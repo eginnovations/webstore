@@ -89,10 +89,12 @@ public class JVoidQuoteController {
 		return "Welcome to Jvoid Quote";
 	}
 
-	@RequestMapping(value = "payment/makepayment", method = RequestMethod.GET)
-	public @ResponseBody String payment(@RequestParam(required = false, value = "callback") String callback, @RequestParam(required = false, value = "params") JSONObject jsonParams, HttpServletRequest request, HttpServletResponse response) {
+	// @RequestMapping(value = "payment/makepayment", method = RequestMethod.GET)//have to remove payment make it makepayment/visa or master (duplicate the method)
+	@RequestMapping(value = "/makepayment/visage", method = RequestMethod.GET)//have to remove payment make it makepayment/visa or master (duplicate the method)
+	public @ResponseBody String paymentVisage(@RequestParam(required = false, value = "callback") String callback, @RequestParam(required = false, value = "params") JSONObject jsonParams, HttpServletRequest request, HttpServletResponse response) {
 		
-		System.out.println("REquest received");
+		System.out.println("Request received for Visage Card");
+		// System.out.println("REquest received");
 		String myParams = request.getParameter("params");
 		System.out.println("Params : "+myParams);
 		
@@ -106,15 +108,17 @@ public class JVoidQuoteController {
 				paymentMethod = jsonParams.getString("gateway");
 			}
 			catch(Exception eeee){
-				paymentMethod = "visa";
+				paymentMethod = "visagepaymentgateway";
 			}
 		
 		System.out.println("payment Method - "+paymentMethod);
-		String hostIP = (paymentMethod.equalsIgnoreCase("master")) ? "mastercardpaymentgateway" : "visapaymentgateway";
+		// String hostIP = (paymentMethod.equalsIgnoreCase("masterfulcardpaymentgateway")) ? "masterfulcardpaymentgateway" : "visagepaymentgateway";
+		String hostIP = "visagepaymentgateway";
 		//String hostIP = "gateway:8080";
 		UriComponentsBuilder builder = null;
 				
-		builder = UriComponentsBuilder.fromHttpUrl("http://" + hostIP + "/" + ((paymentMethod.equalsIgnoreCase("visa")) ? "visa" : "master"));
+		// builder = UriComponentsBuilder.fromHttpUrl("http://" + hostIP + "/" + ((paymentMethod.equalsIgnoreCase("visagepaymentgateway")) ? "visagepaymentgateway" : "masterfulcardpaymentgateway"));
+		builder = UriComponentsBuilder.fromHttpUrl("http://" + hostIP + "/visagecard/submitpayment");
 
 		System.out.println("hostIp - "+hostIP);
 		
@@ -143,7 +147,7 @@ public class JVoidQuoteController {
 		}
 		String rStr  = "Success ! redirecting...";
 		
-		if(paymentMethod.equals("visa")){
+		if(paymentMethod.equals("visagepayment")){
 			rStr  = "Success ! redirecting...";
 		}
 		else 
@@ -152,6 +156,74 @@ public class JVoidQuoteController {
 		return rStr;	
 		//return returnString.getBody();
 	}
+	@RequestMapping(value = "/makepayment/masterful", method = RequestMethod.GET)//have to remove payment make it makepayment/visa or master (duplicate the method)
+	public @ResponseBody String paymentMasterful(@RequestParam(required = false, value = "callback") String callback, @RequestParam(required = false, value = "params") JSONObject jsonParams, HttpServletRequest request, HttpServletResponse response) {
+		
+		// System.out.println("REquest received");
+		System.out.println("Request received from Masterful card");
+		String myParams = request.getParameter("params");
+		System.out.println("Params : "+myParams);
+		
+		String paymentMethod = "";
+		HttpEntity<String> returnString = null;
+		try {
+			if(jsonParams == null && myParams != null){
+				paymentMethod = myParams;
+			}
+			try {
+				paymentMethod = jsonParams.getString("gateway");
+			}
+			catch(Exception eeee){
+				paymentMethod = "visagepaymentgateway";
+			}
+		
+		System.out.println("payment Method - "+paymentMethod);
+		String hostIP = "masterfulcardpaymentgateway";
+		// String hostIP = (paymentMethod.equalsIgnoreCase("masterfulcardpaymentgateway")) ? "masterfulcardpaymentgateway" : "visagepaymentgateway";
+		//String hostIP = "gateway:8080";
+		UriComponentsBuilder builder = null;
+				
+		// builder = UriComponentsBuilder.fromHttpUrl("http://" + hostIP + "/" + ((paymentMethod.equalsIgnoreCase("visagepaymentgateway")) ? "visagepaymentgateway" : "masterfulcardpaymentgateway"));
+		builder = UriComponentsBuilder.fromHttpUrl("http://" + hostIP + "/masterfulcard/submitpayment");
+
+		System.out.println("hostIp - "+hostIP);
+		
+		RestTemplate restTemplate = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Accept", "text/html");
+		HttpEntity<?> entity = new HttpEntity<>(headers);
+		//returnString = restTemplate.exchange(builder.build().toUri(), HttpMethod.GET, entity, String.class);
+		System.out.println("  Payment Gateway Return  "+returnString);
+				
+		try {
+			URI uri = builder.build().toUri();
+			System.out.println(uri.toURL().toString());
+			returnString = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
+
+		} catch (HttpClientErrorException | HttpServerErrorException | MalformedURLException httpClientOrServerExc) {
+			System.out.println("--------------------------->"+((HttpStatusCodeException) httpClientOrServerExc).getStatusCode());
+		    if(HttpStatus.INTERNAL_SERVER_ERROR.equals(((HttpStatusCodeException) httpClientOrServerExc).getStatusCode())) {
+		    	response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+		    	return "Could not get a timely response from the payment gateway!";
+		    }
+		}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String rStr  = "Success ! redirecting...";
+		
+		if(paymentMethod.equals("visagepaymentgateway")){
+			rStr  = "Success ! redirecting...";
+		}
+		else 
+			rStr  = "Could not get a timely response from the payment gateway!";
+					
+		return rStr;	
+		//return returnString.getBody();
+	}
+
+
 
 	@RequestMapping(value = "quote/add", method = RequestMethod.GET)
 	public @ResponseBody String addCart(@RequestParam(required = false, value = "callback") String callback,

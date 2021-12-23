@@ -15,6 +15,7 @@
 		<module>Modules/quote</module>
 		<module>Modules/order</module>
 		<module>Modules/payment</module>
-		<module>Modules/gateway</module>
+		<module>Modules/gatewayVisa</module>
+		<module>Modules/gatewayMaster</module>
     </modules>
 </project>

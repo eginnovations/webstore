@@ -28,7 +28,8 @@ import com.webstore.core.uriconstants.URIConstants;
 /**
  * Servlet implementation class PaymentGatewayController
  */
-@WebServlet("/payment")
+// @WebServlet("/payment")
+@WebServlet("/makepayment")
 public class PaymentGatewayController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -108,7 +109,7 @@ public class PaymentGatewayController extends HttpServlet {
 						
 					}
 					 
-			if(gateway != null && gateway.equals("visa")){
+			if(gateway != null && gateway.equals("visagepayment")){
 				//System.out.println("INFO  PAYMENT-ACTION-SUCCESS  The payment has been successfully done !!!");
 				//logDebug("INFO", "PAYMENT-ACTION-SUCCESS", "The payment has been successfully done !!!");
 				logDebug("INFO", "| Payment success |", " TransactionValue:$"+value+" | Gateway:"+gateway.toUpperCase());
@@ -126,10 +127,26 @@ public class PaymentGatewayController extends HttpServlet {
 			if(domainPath == null || domainPath.length() <= 0)			
 				domainPath = ServerUris.PAYMENT_SERVER_URI ;
 			System.out.println("domainPath : "+domainPath);
-
-			UriComponentsBuilder builder = UriComponentsBuilder
-					.fromHttpUrl(domainPath  + "/payment/" + URIConstants.MAKE_PAYMENT)
+			UriComponentsBuilder builder = null;
+			if(gateway.equalsIgnoreCase("visagepayment")){
+				
+			builder = UriComponentsBuilder
+					.fromHttpUrl(domainPath  + "/payment/" + URIConstants.MAKE_PAYMENT+"/visage")
 					.queryParam("params", jsonParams);
+					System.out.println(builder.build().toUri());
+			
+			}else{
+				
+			builder = UriComponentsBuilder
+					.fromHttpUrl(domainPath  + "/payment/" + URIConstants.MAKE_PAYMENT+"/masterful")
+					.queryParam("params", jsonParams);
+					System.out.println(builder.build().toUri());
+			
+			}
+			// UriComponentsBuilder builder = UriComponentsBuilder
+					// .fromHttpUrl(domainPath  + "/payment/" + URIConstants.MAKE_PAYMENT)
+					// .queryParam("params", jsonParams);
+					// System.out.println(builder.build().toUri());
 			HttpEntity<?> entity = new HttpEntity<>(headers);
 			HttpEntity<String> returnString = null;
 			try {

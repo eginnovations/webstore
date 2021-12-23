@@ -36,6 +36,16 @@
 		
 		
  %>
+ 
+ <!-- RUM Header -->
+<script charset='UTF-8' type='text/javascript'>
+window['egrum-start_time'] = new Date().getTime();
+window['Site_Name'] = 'e2033f64-c6e1-44b7-89f1-f56e04c9af15-1636439915919';
+window['beacon-url'] = 'https://apm.eginnovations.com';
+if(!window['egrum-config']) window['egrum-config'] = {}; (function (config) {config.capture = { jsError:true, resourceDetails:true, ajax:true, ajaxCorrelation:false, fetch:false, spa:false, overwriteBtmUName:false, excludeURLPattern:'none', ajaxExcludeURLPattern:'none', includeURLPattern:'*'};})(window['egrum-config']);
+</script>
+<script src='https://apm.eginnovations.com/rumcollector/egrum.js' async> </script>
+ 
  		<div class="col-md-12 header">
 			<h1 class="text-muted"><a href="home.jsp"><img src="image/bigstore-logo.png" alt="bigstore"/><span style="display:none">WebStore</span></a></h1>
 			<div ng-controller="navigationController" class="ng-scope">

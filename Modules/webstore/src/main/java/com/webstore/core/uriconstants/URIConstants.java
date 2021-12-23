@@ -17,5 +17,6 @@ public class URIConstants {
 	public static final String UPDATE_CUSTOMER = "/customer/update";
 	public static final String RESET_CUSTOMER_PASSWORD = "/customer/resetpassword";
 	public static final String GET_ITEM_CODE = "/quote/getItemCode";
-	public static final String MAKE_PAYMENT = "/payment/makepayment";
+	// public static final String MAKE_PAYMENT = "/payment/makepayment";
+	public static final String MAKE_PAYMENT = "/makepayment";
 }

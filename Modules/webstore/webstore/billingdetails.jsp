@@ -123,17 +123,18 @@ ng\:form {
 		document.getElementById('loading-visa').style.display = "none";
 		var url = "";
 		var request = new XMLHttpRequest();
-		if (val == "visa") {
+		if (val == "visagepayment") {
 			document.getElementById('loading-visa').style.display = "block";
 		} else {
 			document.getElementById('loading-master').style.display = "block";
 		}
 
-		var url = "payment?gateway="+val;
+		// var url = "payment?gateway="+val;
+		var url = "makepayment?gateway="+val;
 		request.open("GET",encodeURI(url));
 		request.onreadystatechange = function() {
 
-			if (val == "visa") {
+			if (val == "visagepayment") {
 				document.getElementById('loading-visa').style.display = "none";
 			} else {
 				document.getElementById('loading-master').style.display = "none";
@@ -273,7 +274,7 @@ ng\:form {
 			session.removeAttribute("billingDetails");
 			session.removeAttribute("cartId");
 			%>
-			if (val == "visa") {
+			if (val == "visagepayment") {
 				document.getElementById('visastatus').innerHTML = "<div style='display: flex;'><div class='tick'></div><div style='display:inline-block'>"+ this.responseText + "</div></div>";
 				document.getElementById("signup_form").submit();
 			} else {
@@ -389,14 +390,14 @@ input[type=radio], input[type=checkbox] {
 						</tr>
 						
 						<tr>
-							<td style="padding-bottom:20px"><button id="visa" name="visa" class="btn btn-success btn-lg radius paymentbtn" style="min-width: 200px" ng-disabled="" onclick="javascript:paymentMethod('visa')">&nbsp;&nbsp;<b>Pay Using Visa Card</b></button>
+							<td style="padding-bottom:20px"><button id="visa" name="visa" class="btn btn-success btn-lg radius paymentbtn" style="min-width: 200px" ng-disabled="" onclick="javascript:paymentMethod('visagepayment')">&nbsp;&nbsp;<b>Pay Using Visage Card   </b></button>
 							<div style="display:inline-block;vertical-align: middle;"><div class="loading" id="loading-visa" style="position: relative;display:none">Submitting Payment Details to Gateway...</div> <div id="visastatus" class="msgstyle"></div></div>
 							</td>
 							
 						</tr>
 						
 						<tr>
-							<td><button id="master" name="master" class="btn btn-danger btn-lg  radius paymentbtn" style="min-width: 200px" onclick="javascript:paymentMethod('master')" ng-disabled="">&nbsp;&nbsp;<b>Pay Using Master Card</b></button><div style="display:inline-block;vertical-align: middle;"><div class="loading" id="loading-master" style="position: relative;display:none">Submitting Payment Details to Gateway...</div><div id="masterstatus" class="msgstyle"><div style='display:flex; justify-content: center;'></div></div></div></td>
+							<td><button id="master" name="master" class="btn btn-danger btn-lg  radius paymentbtn" style="min-width: 200px" onclick="javascript:paymentMethod('masterfulcardpayment')" ng-disabled="">&nbsp;&nbsp;<b>Pay Using Masterful Card</b></button><div style="display:inline-block;vertical-align: middle;"><div class="loading" id="loading-master" style="position: relative;display:none">Submitting Payment Details to Gateway...</div><div id="masterstatus" class="msgstyle"><div style='display:flex; justify-content: center;'></div></div></div></td>
 							
 						</tr>
 						<tr><td><br></td></tr>
