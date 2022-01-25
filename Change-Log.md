@@ -1,5 +1,6 @@
-Working images list:-
-	Visage Payment and Masterful Card changes:- (22/12/21) done by Senthilnathan
+**Working images list:-**
+	**Visage Payment and Masterful Card changes:**- (22/12/21) done by Senthilnathan
+	
 		Webstore:- egapm/new-webstore:webstore-l
 		Customers:- egapm/new-webstore:customer-f
 		Payment:- egapm/new-webstore:payment-g
