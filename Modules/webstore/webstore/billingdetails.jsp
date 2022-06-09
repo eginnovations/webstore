@@ -227,7 +227,7 @@ ng\:form {
 			try {
 
 				totalAmount = jsonParams.getJSONObject("cart").getInt("total");
-				
+				System.out.println("totalAmount : "+totalAmount);
 				RestTemplate restTemplate = new RestTemplate();
 				HttpHeaders headers = new HttpHeaders();
 				headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
