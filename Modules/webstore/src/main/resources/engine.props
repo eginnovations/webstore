@@ -9,3 +9,12 @@ USER_AGENT=Mozilla/5.0
 GET_URL=http://product/products/webAuthenticateController
 POST_URL=http://product/products/webCartController
 POST_PARAMS=sqlQuery=1
+##################################################################################################
+#************************************** JMS Configuration ***************************************#
+##################################################################################################
+ACTIVE_MQ_URL=tcp://activemq:61616
+ACTIVE_MQ_USER=admin
+ACTIVE_MQ_PASSWORD=admin
+ACTIVE_QUEUE_NAME=OrderProcessingQueue
+ACTIVE_MQ_SLOW_METHOD_ACTIVATE=false
+ACTIVE_MQ_SLOW_METHOD_TIME=300

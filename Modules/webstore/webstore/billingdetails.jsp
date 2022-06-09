@@ -1,3 +1,4 @@
+<%@page import="com.webstore.core.engine.web.jms.OrderProcessingImpl"%>
 <%@page import="com.webstore.core.uriconstants.ProductCartDetails"%>
 <%@ page import="org.json.*"%>
 <%@ page import="java.io.*"%>
@@ -225,14 +226,12 @@ ng\:form {
 			String tag = "0 | 0";
 			try {
 
-
-					totalAmount = jsonParams.getJSONObject("cart").getInt("total");
-
+				totalAmount = jsonParams.getJSONObject("cart").getInt("total");
 				
 				RestTemplate restTemplate = new RestTemplate();
 				HttpHeaders headers = new HttpHeaders();
 				headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
+				
 				UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(ServerUris.QUOTE_SERVER_URI + URIConstants.CHECKOUT_CART).queryParam("params", jsonParams);
 				HttpEntity<?> entity = new HttpEntity<>(headers);
 				System.out.println("Quote  Url = "+UriComponentsBuilder.fromHttpUrl(ServerUris.QUOTE_SERVER_URI + URIConstants.CHECKOUT_CART).queryParam("params", jsonParams).build().toUri());
@@ -242,12 +241,16 @@ ng\:form {
 				returnJsonObj = new JSONObject(returnString.getBody());
 				String responseStr = "";
 				if (returnJsonObj.getString("result").equals("Success")) {
+					
 					System.out.println(" After Success message from quote ");
-					UriComponentsBuilder builder1 = UriComponentsBuilder.fromHttpUrl(ServerUris.ORDER_SERVER_URI + URIConstants.ADD_ORDER).queryParam("params", jsonParams);
-					HttpEntity<?> entity1 = new HttpEntity<>(headers);
-					System.out.println("Order Uri = "+UriComponentsBuilder.fromHttpUrl(ServerUris.ORDER_SERVER_URI + URIConstants.ADD_ORDER).queryParam("params", jsonParams).build().toUri());
-					HttpEntity<String> returnString1 = restTemplate.exchange(builder1.build().toUri(), HttpMethod.GET,entity1, String.class);
-					responseStr = returnString1.getBody();
+					OrderProcessingImpl orderProcessingImpl = new OrderProcessingImpl();
+					orderProcessingImpl.pushIntoQueue(jsonParams);
+					
+					//UriComponentsBuilder builder1 = UriComponentsBuilder.fromHttpUrl(ServerUris.ORDER_SERVER_URI + URIConstants.ADD_ORDER).queryParam("params", jsonParams);
+					//HttpEntity<?> entity1 = new HttpEntity<>(headers);
+					//System.out.println("Order Uri = "+UriComponentsBuilder.fromHttpUrl(ServerUris.ORDER_SERVER_URI + URIConstants.ADD_ORDER).queryParam("params", jsonParams).build().toUri());
+					//HttpEntity<String> returnString1 = restTemplate.exchange(builder1.build().toUri(), HttpMethod.GET,entity1, String.class);
+					//responseStr = returnString1.getBody();
 				}
 				
 				JSONObject orderJobj = new JSONObject(responseStr);
