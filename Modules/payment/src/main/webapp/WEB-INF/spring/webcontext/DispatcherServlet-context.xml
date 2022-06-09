@@ -24,15 +24,15 @@
 		<property name="password" value="root" />
 	</bean>
 	
-	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-        	<property name="brokerURL" value="tcp://activemq:61616" />
-    	</bean>
+	<!--  <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://activemq:61616" />
+    </bean>
 	
 	<bean id="listener" class="com.webstore.quote.queue.OrderListener"></bean>  
   
 	<jms:listener-container container-type="default" connection-factory="connectionFactory" acknowledge="auto">  
 		<jms:listener destination="orderProcessingQueue" ref="listener" method="onMessage"></jms:listener>  
-	</jms:listener-container>  
+	</jms:listener-container>  --> 
 	
 	<!-- Hibernate 4 SessionFactory Bean definition --> 
 	<bean id="hibernate4AnnotatedSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">

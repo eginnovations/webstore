@@ -3,9 +3,7 @@ package com.webstore.quote.queue;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 
-import org.springframework.jms.annotation.EnableJms;
-
-@EnableJms
+// EnableJms
 public class OrderListener implements MessageListener{
 
 	@Override
