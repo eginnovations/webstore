@@ -212,7 +212,7 @@ ng\:form {
 			JSONObject result = new JSONObject();
 			result.put("cartId", cartId);
 			//remove it when using jboss server
-			//result.put("cart", cartItems);
+			result.put("cart", cartItems);
 			//result.put("user", userJObj);
 			//result.put("billing", billingJObj);
 			//result.put("shipping", billingJObj);
