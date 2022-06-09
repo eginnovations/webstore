@@ -151,7 +151,9 @@ public class PaymentGatewayController extends HttpServlet {
 			HttpEntity<String> returnString = null;
 			try {
 				returnString = restTemplate.exchange(builder.build().toUri(), HttpMethod.GET, entity, String.class);
+				System.out.println("---------- PaymentGatewayController returnString ----------------->" + returnString);
 			} catch (HttpClientErrorException | HttpServerErrorException httpClientOrServerExc) {
+				System.out.println("---------- HttpClientErrorException ----------------->" + httpClientOrServerExc);
 				System.out.println("--------------------------->" + httpClientOrServerExc.getStatusCode()+"   "+httpClientOrServerExc.getStatusCode().is5xxServerError());
 				if (httpClientOrServerExc.getStatusCode().is5xxServerError()) {
 					response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

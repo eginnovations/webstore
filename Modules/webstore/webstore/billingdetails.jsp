@@ -235,17 +235,17 @@ ng\:form {
 
 				UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(ServerUris.QUOTE_SERVER_URI + URIConstants.CHECKOUT_CART).queryParam("params", jsonParams);
 				HttpEntity<?> entity = new HttpEntity<>(headers);
-				//System.out.println("Quote  Url = "+UriComponentsBuilder.fromHttpUrl(ServerUris.QUOTE_SERVER_URI + URIConstants.CHECKOUT_CART).queryParam("params", jsonParams).build().toUri());
-				HttpEntity<String> returnString = restTemplate.exchange(builder.build().toUri(), HttpMethod.GET, entity,
-						String.class);
-
+				System.out.println("Quote  Url = "+UriComponentsBuilder.fromHttpUrl(ServerUris.QUOTE_SERVER_URI + URIConstants.CHECKOUT_CART).queryParam("params", jsonParams).build().toUri());
+				HttpEntity<String> returnString = restTemplate.exchange(builder.build().toUri(), HttpMethod.GET, entity,String.class);
+				System.out.println(" Quote  Url returnString "+returnString);
 				JSONObject returnJsonObj = null;
 				returnJsonObj = new JSONObject(returnString.getBody());
 				String responseStr = "";
 				if (returnJsonObj.getString("result").equals("Success")) {
+					System.out.println(" After Success message from quote ");
 					UriComponentsBuilder builder1 = UriComponentsBuilder.fromHttpUrl(ServerUris.ORDER_SERVER_URI + URIConstants.ADD_ORDER).queryParam("params", jsonParams);
 					HttpEntity<?> entity1 = new HttpEntity<>(headers);
-					//System.out.println("Order Uri = "+UriComponentsBuilder.fromHttpUrl(ServerUris.ORDER_SERVER_URI + URIConstants.ADD_ORDER).queryParam("params", jsonParams).build().toUri());
+					System.out.println("Order Uri = "+UriComponentsBuilder.fromHttpUrl(ServerUris.ORDER_SERVER_URI + URIConstants.ADD_ORDER).queryParam("params", jsonParams).build().toUri());
 					HttpEntity<String> returnString1 = restTemplate.exchange(builder1.build().toUri(), HttpMethod.GET,entity1, String.class);
 					responseStr = returnString1.getBody();
 				}
@@ -265,7 +265,7 @@ ng\:form {
 				session.setAttribute("tag", tag);
 				session.setAttribute("orderId", String.valueOf(orderId));
 				session.setAttribute("amount", String.valueOf(totalAmount));
-				//System.out.println("INFO CHECKOUT-ACTION-SUCCESS  Cart items are checked out successfully !!!");
+				System.out.println("INFO CHECKOUT-ACTION-SUCCESS  Cart items are checked out successfully !!!");
 				//logDebug("INFO", "CHECKOUT-ACTION-SUCCESS", "Cart items are checked out successfully !!!");
 				logDebug("INFO", "| Checkout success |", " TransactionValue:$"+totalAmount+" | OrderID:"+orderId);
 			} catch (Exception e) {
