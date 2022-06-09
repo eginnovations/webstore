@@ -234,7 +234,7 @@ ng\:form {
 				
 				UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(ServerUris.QUOTE_SERVER_URI + URIConstants.CHECKOUT_CART).queryParam("params", jsonParams);
 				HttpEntity<?> entity = new HttpEntity<>(headers);
-				System.out.println("Quote  Url = "+UriComponentsBuilder.fromHttpUrl(ServerUris.QUOTE_SERVER_URI + URIConstants.CHECKOUT_CART).queryParam("params", jsonParams).build().toUri());
+				System.out.println("Quote  Url = ");
 				HttpEntity<String> returnString = restTemplate.exchange(builder.build().toUri(), HttpMethod.GET, entity,String.class);
 				System.out.println(" Quote  Url returnString "+returnString);
 				JSONObject returnJsonObj = null;
