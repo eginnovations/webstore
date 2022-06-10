@@ -21,7 +21,6 @@
 package com.webstore.order.controller;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -44,7 +43,7 @@ import com.webstore.order.model.CartItem;
 import com.webstore.order.model.CheckoutOrder;
 import com.webstore.order.model.CheckoutOrderAddress;
 import com.webstore.order.model.CheckoutOrderItem;
-import com.webstore.order.queue.OrderProducer;
+
 import com.webstore.order.service.CheckoutOrderAddressService;
 import com.webstore.order.service.CheckoutOrderItemService;
 import com.webstore.order.service.CheckoutOrderService;
@@ -64,8 +63,7 @@ public class JVoidOrderController {
 	@Autowired
 	private CheckoutOrderItemService checkoutOrderItemService;
 	
-	@Autowired
-	private OrderProducer orderProducer;
+
 	
 	public void setCheckoutOrderService(CheckoutOrderService checkoutOrderService){
 		this.checkoutOrderService = checkoutOrderService;
@@ -251,7 +249,7 @@ public class JVoidOrderController {
 			e.printStackTrace();
 		}
 		
-		addOrderDetailsIntoQueue("orderId"+insertedOrderId);
+
 		
 		return jsonObj.toString();
 		
@@ -260,14 +258,7 @@ public class JVoidOrderController {
 	}
 	
 	
-	public void addOrderDetailsIntoQueue(String message) {
-		try {
-			orderProducer.sendMessage(message);
-	        System.out.println("message stored into queue : "+orderProducer.getDestination());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+
 	
 	
 	@RequestMapping(value = "order/list", method = RequestMethod.GET)
