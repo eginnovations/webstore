@@ -212,39 +212,38 @@ ng\:form {
 			JSONObject result = new JSONObject();
 			result.put("cartId", cartId);
 			//remove it when using jboss server
-			result.put("cart", cartItems);
+			//result.put("cart", cartItems);
 			//result.put("user", userJObj);
 			//result.put("billing", billingJObj);
 			//result.put("shipping", billingJObj);
 			//result.put("checkoutMethod", "COD");
 
 			session.removeAttribute("cartItems");
-			JSONObject jsonParams = result;
 			System.out.println("result : "+result);
 			int orderId = 0;
 			double totalAmount = 0;
 			String tag = "0 | 0";
+			
+			System.out.println(" After Success message from quote ");
+			OrderProcessingImpl orderProcessingImpl = new OrderProcessingImpl();
+			orderProcessingImpl.pushIntoQueue(result);
+			
 			try {
 
-				totalAmount = jsonParams.getJSONObject("cart").getInt("total");
+				totalAmount = result.getJSONObject("cart").getInt("total");
 				System.out.println("totalAmount : "+totalAmount);
 				RestTemplate restTemplate = new RestTemplate();
 				HttpHeaders headers = new HttpHeaders();
 				headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 				
-				UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(ServerUris.QUOTE_SERVER_URI + URIConstants.CHECKOUT_CART).queryParam("params", jsonParams);
+				UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(ServerUris.QUOTE_SERVER_URI+URIConstants.CHECKOUT_CART).queryParam("params", result);
 				HttpEntity<?> entity = new HttpEntity<>(headers);
-				System.out.println("Quote  Url = ");
-				HttpEntity<String> returnString = restTemplate.exchange(builder.build().toUri(), HttpMethod.GET, entity,String.class);
+				HttpEntity<String> returnString = restTemplate.exchange(builder.build().toUri(), HttpMethod.GET, entity, String.class);
 				System.out.println(" Quote  Url returnString "+returnString);
 				JSONObject returnJsonObj = null;
 				returnJsonObj = new JSONObject(returnString.getBody());
 				String responseStr = "";
 				if (returnJsonObj.getString("result").equals("Success")) {
-					
-					System.out.println(" After Success message from quote ");
-					OrderProcessingImpl orderProcessingImpl = new OrderProcessingImpl();
-					orderProcessingImpl.pushIntoQueue(jsonParams);
 					
 					//UriComponentsBuilder builder1 = UriComponentsBuilder.fromHttpUrl(ServerUris.ORDER_SERVER_URI + URIConstants.ADD_ORDER).queryParam("params", jsonParams);
 					//HttpEntity<?> entity1 = new HttpEntity<>(headers);
