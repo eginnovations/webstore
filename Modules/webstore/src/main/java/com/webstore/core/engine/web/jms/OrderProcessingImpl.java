@@ -25,6 +25,11 @@ public class OrderProcessingImpl {
 			EnginePropertyReader engineProps = new EnginePropertyReader();
 			Properties jmsProps = engineProps.getEnginePropsObj();
 			 String queueUrl = jmsProps.getProperty("ACTIVE_MQ_URL");
+			 String queueUrlFromEnv = System.getenv("MQ_URI");
+			 if(queueUrlFromEnv!=null && queueUrlFromEnv.lenght() > 0){
+				 queueUrl = queueUrlFromEnv;
+			 }
+			 System.out.println(new java.util.Date() + "queueUrl :- "+ queueUrl);
 			 String queueName = jmsProps.getProperty("ACTIVE_QUEUE_NAME");
 			 String sleepActivate = jmsProps.getProperty("ACTIVE_MQ_SLOW_METHOD_ACTIVATE");
 			 String sleepTimeString = jmsProps.getProperty("ACTIVE_MQ_SLOW_METHOD_TIME");
