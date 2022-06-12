@@ -26,7 +26,7 @@ public class OrderProcessingImpl {
 			Properties jmsProps = engineProps.getEnginePropsObj();
 			 String queueUrl = jmsProps.getProperty("ACTIVE_MQ_URL");
 			 String queueUrlFromEnv = System.getenv("MQ_URI");
-			 if(queueUrlFromEnv!=null && queueUrlFromEnv.lenght() > 0){
+			 if(queueUrlFromEnv!=null && queueUrlFromEnv.length() > 0){
 				 queueUrl = queueUrlFromEnv;
 			 }
 			 System.out.println(new java.util.Date() + "queueUrl :- "+ queueUrl);
