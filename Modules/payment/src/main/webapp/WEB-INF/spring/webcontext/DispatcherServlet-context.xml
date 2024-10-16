@@ -5,7 +5,6 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:webflow-config="http://www.springframework.org/schema/webflow-config"
-	xmlns:jms="http://www.springframework.org/schema/jms"
 
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
 			classpath:/org/springframework/beans/factory/xml/spring-beans-4.0.xsd
@@ -16,9 +15,10 @@
 			http://www.springframework.org/schema/tx
 			classpath:/org/springframework/transaction/config/spring-tx-3.1.xsd
 			http://www.springframework.org/schema/webflow-config
-			classpath:/org/springframework/webflow/config/spring-webflow-config-2.3.xsd
-			http://www.springframework.org/schema/jms
-			classpath:/org/springframework/jms/config/spring-jms-4.0.xsd">
+			classpath:/org/springframework/webflow/config/spring-webflow-config-2.3.xsd">
+			<!-- http://www.springframework.org/schema/jms -->
+			<!-- classpath:/org/springframework/jms/config/spring-jms-4.0.xsd -->
+	<!-- xmlns:jms="http://www.springframework.org/schema/jms" -->
 	
 	<context:component-scan base-package="com.webstore.quote" />  
 	
@@ -55,11 +55,12 @@
 			</props>
 		</property>
 	</bean>
+	<!--
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
-	
+	-->
 	<bean id="checkoutQuoteItemDAO" class="com.webstore.quote.dao.impl.CheckoutQuoteItemDAOImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
