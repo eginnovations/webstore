@@ -60,7 +60,7 @@ alert("cpuload");
 </div>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Poppins:900i');
+<!-- @import url('https://fonts.googleapis.com/css?family=Poppins:900i'); -->
 
 * {
   box-sizing: border-box;

@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>WebStore</title>
-       <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,900&display=swap" rel="stylesheet">
+<!--        <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,900&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="shortcut icon" href="favicon.png" type="image/png" sizes="16x16">
   	<script src="lib/jquery.min.js"></script>
