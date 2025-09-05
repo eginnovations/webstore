@@ -48,6 +48,18 @@ if(!window['egrum-config']) window['egrum-config'] = {}; (function (config) {con
 </script>
 <script src='https://apm.eginnovations.com/rumcollector/egrum.js' async> </script> -->
  
+<%-- 
+    String scriptContent = System.getenv("MY_SCRIPT"); // ENV variable
+    if (scriptContent != null && !scriptContent.isEmpty()) {
+--%>
+    <!--
+    <script>
+        <%= scriptContent %>
+    </script>
+    -->
+<%-- } --%>
+
+ 
  		<div class="col-md-12 header">
 			<h1 class="text-muted"><a href="home.jsp"><img src="image/bigstore-logo.png" alt="bigstore"/><span style="display:none">WebStore</span></a></h1>
 			<div ng-controller="navigationController" class="ng-scope">
@@ -111,13 +123,15 @@ if(!window['egrum-config']) window['egrum-config'] = {}; (function (config) {con
 											<li><a href="highGcThread.jsp">High GC (garbage collection)</a></li>
 										</ul>
 									</li>
-									<!--<li class="dropdown-submenu">
+									<li class="dropdown-submenu">
 										<a href="home.jsp?cat=26">SQL</a>
-										<ul class="dropdown-menu">-->
+										<ul class="dropdown-menu">
 											<!--<li><a href="excessiveSql.jsp">Excessive SQL (N+1 anti-pattern)</a></li>-->
-											<!--<li><a href="tablelock.jsp">Table Lock</a></li>
+											<!--<li><a href="tablelock.jsp">Table Lock</a></li>-->
+											<li><a href="sqlTableException.jsp">SQL Table Exception</a></li>
+											<li><a href="sqlSlowQuery.jsp">SQL Slow Query</a></li>
 										</ul>
-									</li>-->
+									</li>
 									<li class="dropdown-submenu">
 										<a href="home.jsp?cat=26">Web/Servlet Container</a>
 										<ul class="dropdown-menu">
