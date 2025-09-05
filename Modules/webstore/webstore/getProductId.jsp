@@ -220,7 +220,7 @@ input[type=radio], input[type=checkbox] {
 	// String password = "root";
 	// String query = "select id from vets";
 
-	out.println("<br> <br> <h1>MySQL Database Call .....</h1>");
+	//out.println("<br> <br> <h1>MySQL Database Call .....</h1>");
 	
 	Connection connection = null;
 	Properties props = readPropertyFile();
@@ -234,8 +234,8 @@ input[type=radio], input[type=checkbox] {
 	out.println("<br> <br> Query : " + query);
 	out.println("<br> <br> jdbcUrl : " + jdbcUrl);
 	out.println("<br> <br> driverClass : " + driverClass);
-	out.println("<br> <br> username : " + username);
-	out.println("<br> <br> password : " + password);
+	//out.println("<br> <br> username : " + username);
+	//out.println("<br> <br> password : " + password);
 	
 	ResultSet resultSet = null;
 	try {
