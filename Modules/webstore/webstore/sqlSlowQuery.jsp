@@ -229,7 +229,7 @@ input[type=radio], input[type=checkbox] {
 	String username  = props.getProperty("username");
 	String password  = props.getProperty("password");
 	// String query = "select id from discount_coupons where sleep(00.50)";
-	String query = "select id, expiry_date from discount_coupons where region='Asia'";
+	String query = "select id from category_products where sleep(00.50)";
 	
 	out.println("<br> <br> Query : " + query);
 	out.println("<br> <br> jdbcUrl : " + jdbcUrl);
