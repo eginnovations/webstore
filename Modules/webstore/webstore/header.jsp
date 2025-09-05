@@ -38,13 +38,15 @@
  %>
  
  <!-- RUM Header -->
-<script charset='UTF-8' type='text/javascript'>
+ <!--EG_RUM_SCRIPT-->
+
+<!-- <script charset='UTF-8' type='text/javascript'>
 window['egrum-start_time'] = new Date().getTime();
 window['Site_Name'] = 'e2033f64-c6e1-44b7-89f1-f56e04c9af15-1636439915919';
 window['beacon-url'] = 'https://apm.eginnovations.com';
-if(!window['egrum-config']) window['egrum-config'] = {}; (function (config) {config.capture = { jsError:true, resourceDetails:true, ajax:true, ajaxCorrelation:false, fetch:false, spa:false, overwriteBtmUName:false, excludeURLPattern:'none', ajaxExcludeURLPattern:'none', includeURLPattern:'*'};})(window['egrum-config']);
+if(!window['egrum-config']) window['egrum-config'] = {}; (function (config) {config.capture = { jsError:true, resourceDetails:true, ajax:true, ajaxCorrelation:false, fetch:false, spa:false, overwriteBtmUName:true, excludeURLPattern:'none', ajaxExcludeURLPattern:'none', includeURLPattern:'*'}; config.username ={ username_enabled:true, selectortype:'xpath', selectoridorpath:'//*[@id="username"]', selectorindex:1};})(window['egrum-config']);
 </script>
-<script src='https://apm.eginnovations.com/rumcollector/egrum.js' async> </script>
+<script src='https://apm.eginnovations.com/rumcollector/egrum.js' async> </script> -->
  
  		<div class="col-md-12 header">
 			<h1 class="text-muted"><a href="home.jsp"><img src="image/bigstore-logo.png" alt="bigstore"/><span style="display:none">WebStore</span></a></h1>
@@ -109,13 +111,13 @@ if(!window['egrum-config']) window['egrum-config'] = {}; (function (config) {con
 											<li><a href="highGcThread.jsp">High GC (garbage collection)</a></li>
 										</ul>
 									</li>
-									<li class="dropdown-submenu">
+									<!--<li class="dropdown-submenu">
 										<a href="home.jsp?cat=26">SQL</a>
-										<ul class="dropdown-menu">
+										<ul class="dropdown-menu">-->
 											<!--<li><a href="excessiveSql.jsp">Excessive SQL (N+1 anti-pattern)</a></li>-->
-											<li><a href="tablelock.jsp">Table Lock</a></li>
+											<!--<li><a href="tablelock.jsp">Table Lock</a></li>
 										</ul>
-									</li>
+									</li>-->
 									<li class="dropdown-submenu">
 										<a href="home.jsp?cat=26">Web/Servlet Container</a>
 										<ul class="dropdown-menu">
