@@ -47,19 +47,7 @@ window['beacon-url'] = 'https://apm.eginnovations.com';
 if(!window['egrum-config']) window['egrum-config'] = {}; (function (config) {config.capture = { jsError:true, resourceDetails:true, ajax:true, ajaxCorrelation:false, fetch:false, spa:false, overwriteBtmUName:true, excludeURLPattern:'none', ajaxExcludeURLPattern:'none', includeURLPattern:'*'}; config.username ={ username_enabled:true, selectortype:'xpath', selectoridorpath:'//*[@id="username"]', selectorindex:1};})(window['egrum-config']);
 </script>
 <script src='https://apm.eginnovations.com/rumcollector/egrum.js' async> </script> -->
- 
-<%-- 
-    String scriptContent = System.getenv("MY_SCRIPT"); // ENV variable
-    if (scriptContent != null && !scriptContent.isEmpty()) {
---%>
-    <!--
-    <script>
-        <%= scriptContent %>
-    </script>
-    -->
-<%-- } --%>
-
- 
+  
  		<div class="col-md-12 header">
 			<h1 class="text-muted"><a href="home.jsp"><img src="image/bigstore-logo.png" alt="bigstore"/><span style="display:none">WebStore</span></a></h1>
 			<div ng-controller="navigationController" class="ng-scope">
