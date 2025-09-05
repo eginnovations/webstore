@@ -23,7 +23,7 @@
 <html><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Get Coupon Id</title>
+	<title>Get Product Id</title>
 
     <!--link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -211,7 +211,7 @@ input[type=radio], input[type=checkbox] {
 		<jsp:include page="header.jsp"/>
 <div>
   <div class="form-heading">
-    <h1 class="h3 mb-3 font-weight-normal">MySQL Error Query</h1>
+    <h1 class="h3 mb-3 font-weight-normal">MySQL Slow Query</h1>
     <p>
 <%
 	// String jdbcUrl = "jdbc:mysql://192.168.8.94:3306/petclinic";
@@ -220,7 +220,7 @@ input[type=radio], input[type=checkbox] {
 	// String password = "root";
 	// String query = "select id from vets";
 
-	//out.println("<br> <br> <h1>MySQL Database Call .....</h1>");
+	out.println("<br> <br> <h1>MySQL Database Call .....</h1>");
 	
 	Connection connection = null;
 	Properties props = readPropertyFile();
@@ -234,8 +234,8 @@ input[type=radio], input[type=checkbox] {
 	out.println("<br> <br> Query : " + query);
 	out.println("<br> <br> jdbcUrl : " + jdbcUrl);
 	out.println("<br> <br> driverClass : " + driverClass);
-	//out.println("<br> <br> username : " + username);
-	//out.println("<br> <br> password : " + password);
+	out.println("<br> <br> username : " + username);
+	out.println("<br> <br> password : " + password);
 	
 	ResultSet resultSet = null;
 	try {
